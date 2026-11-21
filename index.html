@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fogbank · a coastal-fog theme for T3 Code</title>
+<meta name="description" content="Fogbank is a calm, light theme for T3 Code. Pale grey-lilac fog drifts through the margins, and a lighthouse beam sweeps while your agent works.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fogbank, a theme for T3 Code">
+<meta property="og:description" content="Quiet by default. The lamp wakes when your agent works.">
+<meta property="og:image" content="https://joshsaintjacque.github.io/t3code-theme-fogbank/assets/og.png">
+<meta property="og:url" content="https://joshsaintjacque.github.io/t3code-theme-fogbank/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fogbank, a theme for T3 Code">
+<meta name="twitter:description" content="Quiet by default. The lamp wakes when your agent works.">
+<meta name="twitter:image" content="https://joshsaintjacque.github.io/t3code-theme-fogbank/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23dad8ea'/%3E%3Cpath d='M13 27l1.5-12h3L19 27z' fill='%23474c8a'/%3E%3Ccircle cx='16' cy='11' r='3' fill='%23f2b950'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#e8e7f0;--paper:#f3f2f8;--ink:#2a2940;--muted:#55536f;--line:#c6c3d8;--accent:#474c8a;--lamp:#e3ac3e;--lamp-soft:#f2b950;--lilac:#dad8ea;
+--serif:"Fraunces","Iowan Old Style",Palatino,Georgia,serif;--sans:"DM Sans","Avenir Next",system-ui,sans-serif;--mono:"DM Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:linear-gradient(180deg,#ecebf4,#e4e2ef 60%,#dcdaea);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* fog layers that drift behind everything */
+.fog{position:fixed;left:0;top:0;width:200%;height:100%;z-index:0;pointer-events:none;background:
+radial-gradient(ellipse 24% 8% at 24% 18%,rgba(255,255,255,.8),transparent 72%),radial-gradient(ellipse 26% 9% at 70% 40%,rgba(255,255,255,.7),transparent 72%),
+radial-gradient(ellipse 28% 8% at 48% 56%,rgba(160,156,204,.3),transparent 72%),radial-gradient(ellipse 24% 9% at 30% 74%,rgba(255,255,255,.7),transparent 72%),
+radial-gradient(ellipse 20% 7% at 78% 86%,rgba(160,156,204,.25),transparent 72%);background-size:50% 100%;background-repeat:repeat-x;animation:drift 150s linear infinite}
+.fog.b{opacity:.6;animation-duration:230s;animation-direction:reverse;top:12%}
+@keyframes drift{to{transform:translate3d(-50%,0,0)}}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+a{color:inherit}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font:italic 400 22px var(--serif)}
+.mark svg{width:26px;height:26px}
+.top nav{display:flex;gap:22px;font:500 13px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--accent)}
+/* hero */
+.hero{position:relative;padding:34px 0 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:52px}
+.hero .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,26ch);gap:44px;align-items:end}.hero .intro .lede{margin:0 0 6px}.hero .intro h1{margin:14px 0 0}.hero .intro .ctas{grid-column:1/-1}
+.eyebrow{font:500 12.5px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}.eyebrow b{color:#8a540a;font-weight:500}
+h1{font:300 clamp(64px,9vw,128px)/.92 var(--serif);font-variation-settings:"opsz" 144;letter-spacing:-.03em;margin:14px 0 18px}
+h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+.lede{font:400 clamp(20px,2vw,25px)/1.4 var(--serif);color:#3a3956;max-width:30ch;margin:0 0 28px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;font:500 15px var(--sans);text-decoration:none;border:1px solid var(--line);background:rgba(250,249,253,.7);color:var(--ink);cursor:pointer;transition:transform .25s,background .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);background:#fff;box-shadow:0 10px 26px -12px rgba(60,58,100,.45)}
+.btn.primary{background:var(--accent);color:#f7f6fc;border-color:var(--accent)}.btn.primary:hover{background:#383c76}
+.plate{position:relative}
+.win{position:relative;border-radius:16px;overflow:hidden;background:#e8e7f0;box-shadow:0 40px 80px -30px rgba(60,58,100,.55),0 0 0 1px rgba(120,116,170,.3)}
+.win video{display:block;width:100%;height:auto;aspect-ratio:1600/809;object-fit:cover}
+.plate .note{position:absolute;right:6px;top:-34px;font:italic 400 17px var(--serif);color:#6c6a8c;transform:rotate(-1.5deg)}
+.plate .note:after{content:"";display:inline-block;width:26px;height:1px;background:#8d8bb0;vertical-align:middle;margin-left:8px}
+/* sections */
+section{padding:84px 0 20px}
+.sec-head{display:flex;gap:24px;align-items:baseline;margin-bottom:38px;max-width:880px}
+.sec-head .no{font:500 13px var(--mono);letter-spacing:.2em;color:#8a540a}
+h2{font:300 clamp(34px,4.6vw,56px)/1.05 var(--serif);letter-spacing:-.02em;margin:0}h2 em{font-style:italic;color:var(--accent)}
+.sub{color:var(--muted);max-width:56ch;margin:14px 0 0}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.card{grid-column:span 2;background:rgba(246,245,250,.78);border:1px solid var(--line);border-radius:18px;padding:22px 22px 24px;backdrop-filter:none}
+.card.wide{grid-column:span 3}
+.card h3{font:500 22px var(--serif);margin:16px 0 6px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.tag{font:500 11.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#8a540a}
+.demo{position:relative;height:150px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#eceaf4,#e0deec);border:1px solid #d3d0e3}
+/* mini: lighthouse */
+.demo.lh img{position:absolute;right:14%;bottom:-6px;height:132px}
+.demo.lh .beam{position:absolute;right:calc(14% + 49px - 300px);bottom:calc(-6px + 100px - 300px);width:600px;height:600px;opacity:0;transition:opacity 1.6s;animation:spin 16s linear infinite paused;
+background:conic-gradient(from -8deg at 50% 50%,transparent 0deg,rgba(240,170,60,.5) 8deg,transparent 16deg,transparent 172deg,rgba(240,170,60,.3) 180deg,transparent 188deg);-webkit-mask-image:radial-gradient(circle closest-side,#000 6%,transparent 70%);mask-image:radial-gradient(circle closest-side,#000 6%,transparent 70%)}
+.working .beam{opacity:1;animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.demo.fg .m{position:absolute;left:0;top:0;width:200%;height:100%;background:radial-gradient(ellipse 26% 22% at 25% 35%,rgba(255,255,255,.9),transparent 72%),radial-gradient(ellipse 24% 20% at 70% 65%,rgba(160,156,204,.45),transparent 72%),radial-gradient(ellipse 22% 18% at 52% 25%,rgba(255,255,255,.8),transparent 72%);background-size:50% 100%;background-repeat:repeat-x;animation:drift 90s linear infinite;opacity:.8;transition:opacity 1.6s}
+.working .m{opacity:1;animation-duration:24s}
+.demo.rows{padding:16px;display:grid;gap:8px;align-content:start}
+.demo.rows div{display:flex;justify-content:space-between;font:14px var(--sans);padding:7px 11px;border-radius:9px}
+.demo.rows .sel{background:#c8c5e0;box-shadow:inset 2px 0 #474c8a}
+.demo.rows .bz{position:relative;overflow:hidden}.demo.rows .bz small{color:#9a5f0a}
+.demo.rows .bz:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(240,176,70,.3),transparent);transform:translateX(-100%);opacity:0;transition:opacity 1.2s}
+.working .bz:after{opacity:1;animation:wash 4s ease-in-out infinite}
+@keyframes wash{to{transform:translateX(100%)}}
+.demo.hd{padding:0}.demo.hd .bar{height:46px;display:flex;align-items:center;padding:0 16px;font:600 14px var(--sans);background:#dfddeb;border-bottom:1px solid rgba(160,156,196,.4);position:relative;overflow:hidden}
+.demo.hd .bar small{font-weight:400;color:var(--muted);margin-left:10px}
+.demo.hd .bar:after{content:"";position:absolute;left:0;bottom:0;width:30%;height:2px;background:linear-gradient(90deg,transparent,#e8a634,transparent);opacity:0;transform:translateX(-110%)}
+.working .bar:after{opacity:.9;animation:glint 6s ease-in-out infinite}
+@keyframes glint{0%{transform:translateX(-110%)}65%,100%{transform:translateX(380%)}}
+.demo.cp{padding:20px;display:grid;place-items:center}
+.demo.cp .box{width:80%;height:76px;border-radius:16px;border:1px solid rgba(150,146,190,.5);background:#f7f6fb;padding:12px 14px;font-size:14px;color:#78768f;transition:border-color .5s,box-shadow .6s}
+.demo.cp .box:hover,.demo.cp .box:focus-within{border-color:#6a6fb0;box-shadow:0 0 0 3px rgba(106,111,176,.16),0 -10px 26px -8px rgba(240,176,70,.4)}
+.demo.cp input{border:0;outline:0;background:none;font:inherit;color:var(--ink);width:100%}
+.toggle{display:inline-flex;align-items:center;gap:12px;margin:0 0 24px;padding:8px 8px 8px 18px;border:1px solid var(--line);border-radius:999px;background:rgba(250,249,253,.8);font:500 14px var(--sans)}
+.sw{position:relative;width:46px;height:26px;border-radius:999px;background:#c6c3d8;border:0;cursor:pointer;transition:background .3s}
+.sw:after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(40,38,80,.3);transition:transform .3s}
+.sw[aria-pressed=true]{background:var(--accent)}.sw[aria-pressed=true]:after{transform:translateX(20px)}
+.sw:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid #5a5fa3;outline-offset:3px}
+.demo.still{background:linear-gradient(180deg,#eceaf4,#e0deec)}
+.demo.still svg{position:absolute;inset:0;width:100%;height:100%}
+/* film */
+.film{border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(60,58,100,.5),0 0 0 1px rgba(120,116,170,.3);background:#e8e7f0}
+.film video{display:block;width:100%}
+.film-cap{display:flex;justify-content:space-between;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+/* palette */
+.cols2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:start}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line)}th{font:500 11.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+tr.pr{cursor:pointer;transition:background .2s}tr.pr:hover{background:rgba(255,255,255,.6)}tr.pr:focus-visible{outline:2px solid #5a5fa3}
+.sw2{display:inline-block;width:22px;height:22px;border-radius:7px;border:1px solid rgba(60,58,100,.25);vertical-align:middle;margin-right:10px}
+td.hex{font:500 14px var(--mono)}td.hex span{opacity:0;margin-left:10px;color:#8a540a;font-size:12px;transition:opacity .2s}tr.pr.copied td.hex span{opacity:1}
+.type p{margin:0 0 14px;color:var(--muted)}.type .spec{font:italic 300 34px/1.15 var(--serif);color:var(--ink);margin:0 0 14px}
+.rules{margin:0;padding:0;list-style:none;display:grid;gap:10px;color:var(--muted);font-size:15.5px}.rules li{padding-left:22px;position:relative}.rules li:before{content:"";position:absolute;left:0;top:.7em;width:10px;height:1px;background:#8a540a}
+/* install */
+.install{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{min-width:0;background:rgba(246,245,250,.82);border:1px solid var(--line);border-radius:18px;padding:24px}
+.step h3{font:500 22px var(--serif);margin:10px 0 8px}.step p{margin:0 0 16px;color:var(--muted);font-size:15.5px}
+pre{margin:0;padding:14px 16px;border-radius:12px;background:#f4f3f9;border:1px solid rgba(150,146,190,.4);font:13px/1.6 var(--mono);color:#2e2d47;overflow-x:auto;white-space:pre}
+.copy{margin-top:12px}
+footer{position:relative;z-index:1;margin-top:90px;padding:44px 0 70px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
+footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;background:#34324d;color:#f3f2f9;padding:10px 18px;border-radius:10px;font:500 14px var(--sans);transition:.3s;z-index:9;pointer-events:none}.toast.on{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}.reveal.in{opacity:1;transform:none}
+.rise{animation:rise 1.2s ease both;animation-delay:var(--d,0s)}@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+@media (max-width:980px){.hero{gap:34px;padding-top:10px}.hero .intro{grid-template-columns:1fr;gap:14px}.hero .intro .lede{margin-bottom:10px}.grid{grid-template-columns:1fr 1fr}.card,.card.wide{grid-column:span 1}.cols2{grid-template-columns:1fr}.install{grid-template-columns:minmax(0,1fr)}.plate .note{display:none}}
+@media (max-width:640px){.win video{aspect-ratio:1/1;object-position:100% 50%}body{font-size:16px}.wrap{padding:0 16px}.grid{grid-template-columns:1fr}.top nav a:not(.gh){display:none}.sec-head{flex-direction:column;gap:6px}section{padding-top:60px}td.hex span{display:none}.lede{max-width:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}.working .beam{transform:rotate(-64deg)}}
+</style>
+</head>
+<body>
+<div class="fog" aria-hidden="true"></div><div class="fog b" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" aria-label="Fogbank home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 27l1.5-12h3L19 27z" fill="#474c8a"/><rect x="13.5" y="9" width="5" height="5" fill="#f2b950"/><path d="M12 9q4-6 8 0z" fill="#474c8a"/><path d="M8 28h16" stroke="#8c89b3" stroke-width="1.5" stroke-linecap="round"/></svg>Fogbank</a>
+    <nav><a href="#moves">Motion</a><a href="#watch">Film</a><a href="#palette">Palette</a><a href="#install">Install</a><a class="gh" href="https://github.com/joshsaintjacque/t3code-theme-fogbank">GitHub</a></nav>
+  </header>
+  <div class="hero" id="top">
+    <div class="intro">
+      <div><div class="eyebrow rise" style="--d:.1s">A theme for <b>T3 Code</b> · Light · Calm</div>
+      <h1 class="rise" style="--d:.25s">Fog<em>bank</em></h1></div>
+      <p class="lede rise" style="--d:.45s">Quiet by default. The lamp wakes when your agent works.</p>
+      <div class="ctas rise" style="--d:.6s">
+        <a class="btn primary" href="#install">Install Fogbank <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v10M2.5 6.5 7 11l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <a class="btn" href="#watch">Watch the film</a>
+      </div>
+    </div>
+    <div class="plate rise" style="--d:.5s">
+      <div class="note" aria-hidden="true">the beam only turns while it works</div>
+      <div class="win"><video id="hero" src="assets/hero.mp4" poster="assets/hero.jpg" autoplay muted loop playsinline preload="auto" aria-label="Fogbank in T3 Code: a lighthouse beam sweeps through drifting fog while an agent works"></video></div>
+    </div>
+  </div>
+
+  <section id="moves" aria-labelledby="h-moves">
+    <div class="sec-head reveal"><div class="no" aria-hidden="true">01</div><div><h2 id="h-moves">Motion that <em>means</em> something.</h2><p class="sub">Nothing animates for decoration. If your agent is idle, the window is calm; the moment a turn runs, the coast wakes up.</p></div></div>
+    <div class="toggle reveal"><span id="tl">Agent is working</span><button class="sw" id="sw" type="button" role="switch" aria-pressed="true" aria-labelledby="tl"></button></div>
+    <div class="grid" id="grid">
+      <article class="card reveal"><div class="demo lh working" id="d1"><img src="assets/lighthouse.svg" alt="" width="70" height="133"><div class="beam"></div></div><div class="tag" style="margin-top:16px">Working</div><h3>The lamp turns</h3><p>A lighthouse stands in the margin. While a turn runs its beam sweeps both gutters; a strong first sweep settles to a soft turn on long runs. When the turn ends the lamp blooms once and the beam dissolves into the mist.</p></article>
+      <article class="card reveal"><div class="demo fg working"><div class="m"></div></div><div class="tag" style="margin-top:16px">Idle → working</div><h3>The fog bank</h3><p>A dense bank hugs the foot of the window and the tower dissolves into it. At rest the mist barely drifts; working thickens it, at the same slow speed, so nothing jumps.</p></article>
+      <article class="card reveal"><div class="demo hd working"><div class="bar">Sync client retries<small>t3code · main</small></div></div><div class="tag" style="margin-top:16px">Working</div><h3>A glint on the rail</h3><p>A small amber glint crosses the header hairline while a turn runs. On windows under 1240px a thin lamp-bar also slides along the foot of the sidebar.</p></article>
+      <article class="card wide reveal"><div class="demo rows working"><div class="sel">Polish onboarding flow <small>now</small></div><div class="bz">Fix websocket reconnect <small>working</small></div><div>Refactor composer state <small>1d</small></div></div><div class="tag" style="margin-top:16px">Background thread</div><h3>Lamplight wash</h3><p>Busy threads and the live Working row catch a slow wash of amber, so you can see what is in motion without reading.</p></article>
+      <article class="card wide reveal"><div class="demo cp"><div class="box"><input aria-label="Try the composer focus" placeholder="Click here: the fog lifts"></div></div><div class="tag" style="margin-top:16px">Composer focus</div><h3>A lamp behind glass</h3><p>Focus the composer and its rim clears to indigo while a faint amber light rises from beneath it.</p></article>
+    </div>
+    <p class="sub reveal" style="margin-top:24px">On narrower windows the lighthouse shrinks to fit the gutter, stays to about 1180px, and below that a small lantern halo takes over; the lamp-bar joins in under 1240px. <code style="font:13px var(--mono)">prefers-reduced-motion</code> freezes everything to a still, with the beam resting toward the left gutter.</p>
+  </section>
+
+  <section id="watch" aria-labelledby="h-watch">
+    <div class="sec-head reveal"><div class="no" aria-hidden="true">02</div><div><h2 id="h-watch">One full turn, <em>start to finish.</em></h2></div></div>
+    <figure class="reveal" style="margin:0"><div class="film"><video controls preload="metadata" playsinline poster="assets/demo.jpg" src="assets/demo.mp4" aria-label="Captioned walkthrough of Fogbank: rest, compose, a turn, background threads, completion, hover, narrow windows"></video></div>
+    <div class="film-cap"><span>Rest · compose · turn · done · hover · narrow</span><span>65s</span></div></figure>
+  </section>
+
+  <section id="palette" aria-labelledby="h-pal">
+    <div class="sec-head reveal"><div class="no" aria-hidden="true">03</div><div><h2 id="h-pal">Grey-lilac paper, <em>one amber lamp.</em></h2></div></div>
+    <div class="cols2 reveal">
+      <div><table id="schedule"><thead><tr><th>Role</th><th>Hex <span style="text-transform:none;letter-spacing:0">(click to copy)</span></th></tr></thead><tbody>
+<tr class="pr" tabindex="0" data-hex="#e8e7f0"><td><span class="sw2" style="background:#e8e7f0"></span>Canvas</td><td class="hex">#e8e7f0<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#dddbea"><td><span class="sw2" style="background:#dddbea"></span>Sidebar</td><td class="hex">#dddbea<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#dedcea"><td><span class="sw2" style="background:#dedcea"></span>Chrome and header</td><td class="hex">#dedcea<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#dad8ea"><td><span class="sw2" style="background:#dad8ea"></span>Message bubble</td><td class="hex">#dad8ea<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#f4f3f9"><td><span class="sw2" style="background:#f4f3f9"></span>Code background</td><td class="hex">#f4f3f9<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#2a2940"><td><span class="sw2" style="background:#2a2940"></span>Text</td><td class="hex">#2a2940<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#55536f"><td><span class="sw2" style="background:#55536f"></span>Muted text</td><td class="hex">#55536f<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#c6c3d8"><td><span class="sw2" style="background:#c6c3d8"></span>Border</td><td class="hex">#c6c3d8<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#474c8a"><td><span class="sw2" style="background:#474c8a"></span>Accent, send, links</td><td class="hex">#474c8a<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#5a5fa3"><td><span class="sw2" style="background:#5a5fa3"></span>Focus ring</td><td class="hex">#5a5fa3<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#e3ac3e"><td><span class="sw2" style="background:#e3ac3e"></span>Lamp (search match)</td><td class="hex">#e3ac3e<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#2b7686"><td><span class="sw2" style="background:#2b7686"></span>Update</td><td class="hex">#2b7686<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#b0384a"><td><span class="sw2" style="background:#b0384a"></span>Error</td><td class="hex">#b0384a<span>copied</span></td></tr>
+<tr class="pr" tabindex="0" data-hex="#855008"><td><span class="sw2" style="background:#855008"></span>Warning</td><td class="hex">#855008<span>copied</span></td></tr>
+      </tbody></table></div>
+      <div class="type">
+        <div class="spec">Notes on the coast, in Iowan Old Style.</div>
+        <p>Headings use the system serif (Iowan Old Style, Palatino, Georgia) for a printed-chart feel. Everything else keeps the app's own sans and mono, so code stays exactly as crisp as you expect.</p>
+        <ul class="rules">
+          <li>Indigo is the only saturated colour on screen: send, focus, links.</li>
+          <li>Amber belongs to the lamp: the beam and the glints appear only while something is happening, and the lamp blooms once when a turn ends.</li>
+          <li>Fog art always sits behind a clear reading column, never behind text.</li>
+          <li>All text pairs clear WCAG AA; body text is 11.5:1 on the canvas.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" aria-labelledby="h-inst">
+    <div class="sec-head reveal"><div class="no" aria-hidden="true">04</div><div><h2 id="h-inst">Three ways <em>in.</em></h2><p class="sub">One JSON file, no fonts, no images to host.</p></div></div>
+    <div class="install reveal">
+      <div class="step"><div class="tag">From the app</div><h3>Paste it in</h3><p>Copy the JSON, then in T3 Code open <b>Settings › Appearance › Add theme</b> and paste.</p><button class="btn primary copy" id="copyjson" type="button">Copy theme JSON</button></div>
+      <div class="step"><div class="tag">As a file</div><h3>Download</h3><p>Grab the file and choose it in <b>Settings › Appearance › Add theme</b>.</p><a class="btn copy" href="fogbank.json" download="fogbank.json">Download fogbank.json</a></div>
+      <div class="step"><div class="tag">From the terminal</div><h3>CLI</h3><pre id="cli">curl -fsSL -o fogbank.json https://joshsaintjacque.github.io/t3code-theme-fogbank/fogbank.json
+~/.t3/bin/t3 theme set fogbank.json</pre><button class="btn copy" id="copycli" type="button">Copy commands</button></div>
+    </div>
+  </section>
+</div>
+<footer><div class="wrap"><div class="row"><span>A community theme, not affiliated with or endorsed by T3 Code. MIT licensed.</span><span><a href="https://github.com/joshsaintjacque/t3code-theme-fogbank">Source on GitHub</a> · <a href="https://github.com/joshsaintjacque/t3code-theme-fogbank/blob/main/source/build.py">build.py</a></span></div></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),1800)};
+const fallback=txt=>{const a=document.createElement('textarea');a.value=txt;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}a.remove();return ok};
+const copy=async(txt,msg)=>{let ok=false;try{await navigator.clipboard.writeText(txt);ok=true}catch(e){ok=fallback(txt)}toast(ok?msg:'Copy was blocked by the browser; select the text instead')};
+/* theme JSON is fetched on page load; Safari needs the clipboard write to start inside the click, so hand it a promise */
+const themeP=fetch('fogbank.json').then(r=>{if(!r.ok)throw 0;return r.text()});themeP.catch(()=>{});
+$('#copyjson').onclick=async()=>{const msg='Theme JSON copied. Paste it in Settings › Appearance › Add theme';
+  try{if(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write){await navigator.clipboard.write([new ClipboardItem({'text/plain':themeP.then(t=>new Blob([t],{type:'text/plain'}))})]);toast(msg);return}}catch(e){}
+  try{const t=await themeP;await copy(t,msg)}catch(e){toast('Could not fetch fogbank.json; use Download')}};
+$('#copycli').onclick=()=>copy($('#cli').textContent,'Commands copied');
+$$('tr.pr').forEach(r=>{const go=()=>{copy(r.dataset.hex,r.dataset.hex+' copied');r.classList.add('copied');setTimeout(()=>r.classList.remove('copied'),1400)};r.onclick=go;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+const sw=$('#sw');sw.onclick=()=>{const on=sw.getAttribute('aria-pressed')!=='true';sw.setAttribute('aria-pressed',on);$$('.demo').forEach(d=>d.classList.toggle('working',on))};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});$$('.reveal').forEach(e=>io.observe(e));
+const h=$('#hero');if(matchMedia('(prefers-reduced-motion:reduce)').matches){h.removeAttribute('autoplay');h.pause()}
+</script>
+</body>
+</html>
